@@ -1,10 +1,29 @@
 <div>
+    {{-- {{$descargas}} --}}
     <ul>
-        @foreach($descargas as $items)
-            @foreach($items as $doc)
-                <li>{{$doc->email}} - Documento: {{$doc->name_doc}}</li>
-            @endforeach
-                <br>
-        @endforeach
+        @forelse($descargas as $item)
+            {{-- {{var_dump($items->email)}} --}}
+            
+                <li class="flex">
+                    <span class="flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>{{$item->email}}
+                    </span>
+                    <span class="flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>{{$item->name}}
+                    </span>
+                    {{-- <span class="flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>{{$item->created_at}}
+                    </span> --}}
+            
+                {{-- <br>] --}}
+        @empty
+            <h2>Ninguna Descarga</h2>
+        @endforelse
     </ul>
 </div>

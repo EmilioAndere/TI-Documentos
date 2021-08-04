@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocumentsController;
+use App\Models\Document;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +15,15 @@ use App\Http\Controllers\DocumentsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/','/login');
 
 Route::get('/dashboard', [DocumentsController::class, 'index'])
     ->middleware(['auth'])
     ->name('dashboard');
 
-Route::post('/download', [DocumentsController::class, 'download'])->name('descarga');
+Route::post('/download/{id}', [DocumentsController::class, 'download'])->name('descarga');
+Route::view('/documents/create', 'create')->name('documents.create');
+Route::post('/documents/create', [DocumentsController::class, 'store'])->name('create');
+Route::delete('/documents/{id}', [DocumentsController::class, 'destroy'])->name('cursos.destroy');
 
 require __DIR__.'/auth.php';

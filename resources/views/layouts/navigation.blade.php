@@ -12,13 +12,16 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @if(Auth::user()->email != 'emilio.andere.l@gmail.com')
+                    @if(Auth::user()->email != 'martin.juarez@adlerpelzer.com')
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Descargas') }}
                         </x-nav-link>
                     @else
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
+                            {{ __('Descargados') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('documents.create')" :active="request()->routeIs('documents.create')">
+                            {{ __('Agregar Docs') }}
                         </x-nav-link>
                     @endif
                 </div>
