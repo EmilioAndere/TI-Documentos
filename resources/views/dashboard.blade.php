@@ -22,7 +22,7 @@
                                     @forelse ($docs as $item)
                                         <option value="{{$item->name}}">{{$item->name}}</option>
                                     @empty
-                                        <option>Sin Documentos</option>
+                                        <option>No tienes Documentos</option>
                                     @endforelse
                                 </select>
                                 <button type="submit" class="bg-blue-500 rounded-md p-2 ml-3">
