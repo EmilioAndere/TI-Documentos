@@ -14,7 +14,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if(Auth::user()->email == "martin.juarez@adlerpelzer.com")
-                        <div class="flex">
+                        <div class="flex items-center">
                             <form action="{{route('document.filter')}}" method="POST" class="flex items-center">
                                 @csrf
                                 <h2 class="font-bold text-lg mr-3">Archivos Descargados</h2>
@@ -36,6 +36,12 @@
                                     </svg>
                                 </button>
                             </form>
+                            <div class="flex justify-end w-2/4">
+                                <a class="flex bg-green-400 px-5 py-1 rounded-md" href="{{route('export')}}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>Export</a>
+                            </div>
                         </div>
                         <br>
                     @endif    

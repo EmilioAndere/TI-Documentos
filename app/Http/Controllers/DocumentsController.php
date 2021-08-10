@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Exports\DescargasExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DocumentsController extends Controller
 {
@@ -71,12 +73,16 @@ class DocumentsController extends Controller
                 ->join('users', 'users.id', '=', 'document_user.user_id')
                 ->groupBy('document_user.document_id', 'documents.name', 'users.email')
                 ->where('documents.name','=',$req->doc)
-                ->select('documents.name', 'users.email')
+                ->select('documents.name', 'users.email', DB::raw('count(documents.name) as total'))
                 ->get();
                 //return $collections;
             $docs = Document::all();
 
         return view('dashboard', compact('collections', 'docs'));
 
+    }
+
+    public function export(){
+        return Excel::download(new DescargasExport, 'descarga.xlsx');
     }
 }
