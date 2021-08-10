@@ -2,9 +2,11 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             @if(Auth::user()->email != 'martin.juarez@adlerpelzer.com')
+                @section('title', 'Documentos')
                 {{ __('Documentos') }}
             @else
                 {{ __('Dashboard') }}
+                @section('title', 'Dashboard')
             @endif
         </h2>
     </x-slot>
