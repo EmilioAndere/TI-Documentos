@@ -1,7 +1,17 @@
 <div>
     {{-- {{$descargas}} --}}
     <ul>
-
+        <li class="flex ml-10 font-bold text-lg">
+            <span class="flex w-1/4">
+                Usuario
+            </span>
+            <span class="flex w-1/4">
+                Documento
+            </span>
+            <span class="flex">
+               Total
+            </span>
+        </li>
         @forelse($descargas as $item)
             {{-- {{var_dump($items->email)}} --}}
             
