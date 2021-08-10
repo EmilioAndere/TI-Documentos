@@ -14,7 +14,32 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if(Auth::user()->email == "martin.juarez@adlerpelzer.com")
-                        <h2 class="font-bold text-lg">Archivos Descargados</h2><br>
+                        <div class="flex">
+                            <form action="{{route('document.filter')}}" method="POST" class="flex items-center">
+                                @csrf
+                                <h2 class="font-bold text-lg mr-3">Archivos Descargados</h2>
+                                <select name="doc"  class="rounded-md">
+                                    @foreach ($docs as $item)
+                                        <option value="{{$item->name}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="bg-blue-500 rounded-md p-2 ml-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </form>
+                            <form action="{{route('dashboard')}}">
+                                <button class="bg-white rounded-md p-2 ml-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                        <br>
+                    @endif    
+                    @if(Auth::user()->email == "martin.juarez@adlerpelzer.com")
                         <x-list-descargas :descargas="$collections"></x-list-descargas>
                     @else
                         <x-list-documents :documentos="$collections"></x-list-documents>    

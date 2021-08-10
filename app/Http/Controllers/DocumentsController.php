@@ -19,8 +19,9 @@ class DocumentsController extends Controller
                 ->join('document_user', 'documents.id', '=', 'document_user.document_id')
                 ->join('users', 'users.id', '=', 'document_user.user_id')
                 ->groupBy('document_user.document_id', 'documents.name', 'users.email')
-                ->select('documents.name', 'users.email')
-                ->get();
+                ->select('documents.name', 'users.email', DB::raw('count(documents.name) as total'))
+                ->paginate();
+                // ->get();
                 // return $collections;
             $docs = Document::all();
         }else{
@@ -61,5 +62,21 @@ class DocumentsController extends Controller
         $doc->destroy($id);
 
         return redirect()->route('dashboard');
+    }
+
+    public function filter(Request $req){
+
+        $collections = DB::table('documents')
+                ->join('document_user', 'documents.id', '=', 'document_user.document_id')
+                ->join('users', 'users.id', '=', 'document_user.user_id')
+                ->groupBy('document_user.document_id', 'documents.name', 'users.email')
+                ->where('documents.name','=',$req->doc)
+                ->select('documents.name', 'users.email')
+                ->get();
+                //return $collections;
+            $docs = Document::all();
+
+        return view('dashboard', compact('collections', 'docs'));
+
     }
 }

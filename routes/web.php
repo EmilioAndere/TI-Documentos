@@ -24,6 +24,7 @@ Route::get('/dashboard', [DocumentsController::class, 'index'])
 Route::post('/download/{id}', [DocumentsController::class, 'download'])->name('descarga');
 Route::view('/documents/create', 'create')->name('documents.create');
 Route::post('/documents/create', [DocumentsController::class, 'store'])->name('create');
+Route::post('/filter', [DocumentsController::class, 'filter'])->name('document.filter');
 Route::delete('/documents/{id}', [DocumentsController::class, 'destroy'])->name('cursos.destroy');
 
 require __DIR__.'/auth.php';
