@@ -6,10 +6,10 @@
                 Usuario
             </span>
             <span class="flex w-1/4">
-                Documento
+                Documento Descargado
             </span>
             <span class="flex">
-               Total
+               Total Descargas
             </span>
         </li>
         @forelse($descargas as $item)
