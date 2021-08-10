@@ -21,7 +21,7 @@
                         </svg>{{$item->total}} descargas.
                     </span>
             
-                {{-- <br>] --}}
+                <br>
                 {{ $descargas->links() }}
         @empty
             <h2>Ninguna Descarga</h2>
