@@ -15,8 +15,8 @@ class CreateUserDocumentTable extends Migration
     {
         Schema::create('document_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->unique();
-            $table->unsignedBigInteger('document_id')->unique();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('document_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
             $table->timestamps();
