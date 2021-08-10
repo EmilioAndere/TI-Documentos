@@ -19,9 +19,11 @@
                                 @csrf
                                 <h2 class="font-bold text-lg mr-3">Archivos Descargados</h2>
                                 <select name="doc"  class="rounded-md">
-                                    @foreach ($docs as $item)
+                                    @forelse ($docs as $item)
                                         <option value="{{$item->name}}">{{$item->name}}</option>
-                                    @endforeach
+                                    @empty
+                                        <option>No hay documentos</option>
+                                    @endforelse
                                 </select>
                                 <button type="submit" class="bg-blue-500 rounded-md p-2 ml-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
